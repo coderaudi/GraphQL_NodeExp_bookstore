@@ -1,7 +1,13 @@
-const express = require('express'); 
+const express = require('express');
+const  cors = require('cors') 
 const graphqlHTTP = require('express-graphql'); // this will now work without the grpahql package 
 
 const schema = require('./schema/schema');
+``
+
+
+ 
+
 
 // connect to moongoes db -->
 
@@ -17,7 +23,7 @@ mongoose.connection.once('open',()=>{
 // mongo db -->
 
 const app = express(); 
-
+app.use(cors()); // too allow all cross browser req
 app.use('/graphql' , graphqlHTTP({
     schema,
     graphiql : true // middleware to show the graphical view of query fire
